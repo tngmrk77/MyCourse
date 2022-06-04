@@ -14,9 +14,9 @@
       </div>
       <div class="col-md-3">
       <aside>
-        <author>@Model.Author</author>
+        <author>di @Model.Author</author>
         <div class="rating" title="@Model.Rating">
-             @for(int i = 1; i <= 5; i++)
+    @for(int i = 1; i <= 5; i++)
     {
        if(Model.Rating >= i)
        {
@@ -65,7 +65,8 @@
          Totale
         </div>
         <div class="col-md-3 d-flex align-items-center">
-        <i class="far fa-clock"></i><time>@Model.TotalCourseDuration.ToString("m'm 's's'")</time>
+        <i class="far fa-clock"></i><time>@Model.TotalCourseDuration.ToString("h'h 'm'm 's's'")</time>
         </div>
     </div>
 </section>
+
