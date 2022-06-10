@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyCourse.Models.Services.Application;
@@ -24,13 +25,25 @@ namespace MyCourse
             services.AddMvc(options => options.EnableEndpointRouting = false);
             
             //Il codice sotto riportato serve per far funzionare il costruttore presente nella classe CoursesController presente nella dir Controllers
-            services.AddTransient<ICourseService, AdoNetCourseService>();
+            // services.AddTransient<ICourseService, AdoNetCourseService>();
+            services.AddTransient<ICourseService, EfCoreCourseService>();
             services.AddTransient<IDatabaseAccessor, SqliteDatabaseAccessor>();
+
+            // services.AddScoped<MyCourseDbContext>();
+            //services.AddDbContext<MyCourseDbContext>();
+            services.AddDbContextPool<MyCourseDbContext>(optionsBuilder => {
+                #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                
+                optionsBuilder.UseSqlite("Data Source=Data/MyCourse.db");
+
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -53,13 +66,7 @@ namespace MyCourse
                 routeBuilder.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
 
-           /* app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {                                       
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });*/
+         
         }
     }
 }

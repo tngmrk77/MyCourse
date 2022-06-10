@@ -46,6 +46,11 @@ namespace MyCourse.Models.Services.Application
 
         }
 
+        public Task<CourseDetailViewModel> GetCourseAsync(long id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<CourseViewModel>> GetCoursesAsync()
         {
             FormattableString query = $"SELECT Id, Title, ImagePath, Author, Rating, FullPrice_Amount, FullPrice_Currency, CurrentPrice_Amount, CurrentPrice_Currency FROM Courses";

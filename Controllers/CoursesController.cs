@@ -14,14 +14,14 @@ namespace MyCourse.Controllers
             this.courseService = courseService;
 
         }
-        public async Task<IActionResult> Index()
+          public async Task<IActionResult> Index()
         {
-            ViewData["Title"] = "Catalogo dei corsi!";
+            ViewData["Title"] = "Catalogo dei corsi";
             List<CourseViewModel> courses = await courseService.GetCoursesAsync();
             return View(courses);
         }
 
-        public async Task<IActionResult> Detail(int id)
+      public async Task<IActionResult> Detail(int id)
         {
             CourseDetailViewModel viewModel = await courseService.GetCourseAsync(id);
             ViewData["Title"] = viewModel.Title;

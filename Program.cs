@@ -14,7 +14,7 @@ namespace MyCourse
     {
         public static void Main(string[] args)
         {
-            //CreateHostBuilder(args).Build().Run();
+            
              CreateWebHostBuilder(args).Build().Run();
         }
 
@@ -23,11 +23,6 @@ namespace MyCourse
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
                 
-       /* public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });*/
+       
     }
 }

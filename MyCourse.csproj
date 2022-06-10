@@ -7,11 +7,16 @@
   <ItemGroup>
     <Foder Include="wwwroot\" />
     <!--La riga sotto riportata rimuove la classe dall esecuzione del programma-->
-    <Compile Remove="Models/Services/Application/CourseService.cs"/>
+    <Compile Remove="Models/Services/Application/CourseService.cs" />    
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SQLite" Version="6.0.5" />   
+    <PackageReference Include="Microsoft.Data.SQLite" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.10" />   
   </ItemGroup>
 
 </Project>

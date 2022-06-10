@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using MyCourse.Models.Entities;
 using MyCourse.Models.Enums;
 using MyCourse.Models.ValueTypes;
 
@@ -35,7 +36,19 @@ namespace MyCourse.Models.ViewModels
                 Id = Convert.ToInt32(courseRow["Id"])
             };
 
-            return courseViewModel;
+            return courseViewModel;        }
+
+      public static CourseDetailViewModel FromEntity(Course course)
+        {
+            return new CourseDetailViewModel {
+                Id = course.Id,
+                Title = course.Title,
+                ImagePath = course.ImagePath,
+                Author = course.Author,
+                Rating = course.Rating,
+                CurrentPrice = course.CurrentPrice,
+                FullPrice = course.FullPrice
+            };
         }
     }
 }
