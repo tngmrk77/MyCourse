@@ -8,19 +8,17 @@ namespace MyCourse.Models.ViewModels
 {
     public class CourseViewModel
     {
-        public int Id {get; set;}
-        public string Title {get; set;}
-        public string ImagePath { get; set; }   
-        public string Author {get; set;}
-        public double Rating {get; set;}
-        
-        public Money FullPrice {get; set;}
-        public Money CurrentPrice {get; set;}
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string ImagePath { get; set; }
+        public string Author { get; set; }
+        public double Rating { get; set; }
+        public Money FullPrice { get; set; }
+        public Money CurrentPrice { get; set; }
 
         public static CourseViewModel FromDataRow(DataRow courseRow)
         {
-            var courseViewModel = new CourseViewModel
-            {
+            var courseViewModel = new CourseViewModel {
                 Title = Convert.ToString(courseRow["Title"]),
                 ImagePath = Convert.ToString(courseRow["ImagePath"]),
                 Author = Convert.ToString(courseRow["Author"]),
@@ -35,12 +33,12 @@ namespace MyCourse.Models.ViewModels
                 ),
                 Id = Convert.ToInt32(courseRow["Id"])
             };
+            return courseViewModel;
+        }
 
-            return courseViewModel;        }
-
-      public static CourseDetailViewModel FromEntity(Course course)
+        public static CourseViewModel FromEntity(Course course)
         {
-            return new CourseDetailViewModel {
+            return new CourseViewModel {
                 Id = course.Id,
                 Title = course.Title,
                 ImagePath = course.ImagePath,

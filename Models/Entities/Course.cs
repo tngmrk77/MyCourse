@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-//using MyCourse.Models.ValueObjects;
 using MyCourse.Models.ValueTypes;
 
 namespace MyCourse.Models.Entities
