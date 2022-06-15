@@ -12,7 +12,9 @@ namespace MyCourse.Models.Services.Infrastructure
             : base(options)
         {
         }
-
+         // Le classi Course e Lessons si chiamano classi di entità e fanno parte del modello concettuale
+         // a differenza di ADONET non si interrogano tabelle di un db tramite query SQL 
+         // ma interroghiamo degli oggetti (per questo si chiama modello concettuale)  
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Lesson> Lessons { get; set; }
 
@@ -23,7 +25,9 @@ namespace MyCourse.Models.Services.Infrastructure
             modelBuilder.Entity<Course>(entity =>
             {
                 entity.ToTable("Courses"); //Superfluo se la tabella si chiama come la proprietà che espone il DbSet
+                // Con il metodo HasKey indichiamo la proprietà che contiene la chiave primaria del db
                 entity.HasKey(course => course.Id); //Superfluo se la proprietà si chiama Id oppure CoursesId
+                
                 //entity.HasKey(course => new { course.Id, course.Author }); //Per chiavi primarie composite (è importante rispettare l'ordine dei campi)
 
                 //Mapping per gli owned types

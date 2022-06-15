@@ -21,7 +21,14 @@ namespace MyCourse
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            .ConfigureLogging((context, builder) => {
+
+                builder.ClearProviders();              
+                
+
+            })
+            .UseStartup<Startup>();
+                
                 
        
     }

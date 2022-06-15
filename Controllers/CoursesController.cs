@@ -9,7 +9,7 @@ namespace MyCourse.Controllers
     public class CoursesController : Controller
     {
         private readonly ICourseService courseService;
-        public CoursesController(ICourseService courseService)
+        public CoursesController(ICachedCourseService courseService)
         {
             this.courseService = courseService;
         }
@@ -27,4 +27,6 @@ namespace MyCourse.Controllers
             return View(viewModel);
         }
     }
+
+ 
 }
