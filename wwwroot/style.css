@@ -1,37 +1,33 @@
-h1{
-    margin-top: .7 em;
-    margin-bottom: .7em;
+h1 {
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
     font-weight: 200;
 }
 
-.course h2{
+.course h2 {
     margin: 0;
     padding: 0;
     font-size: 1.25rem;
-
 }
 
-hr{
-    margin: .5em 0;
+hr {
+    margin:0.5em 0;
 }
 
-author{
+author {
     font-style: italic;
     color: #888;
 }
-
-.rating{
+.rating {
     color: orange;
     white-space: nowrap;
-
+}
+.price s {
+    color :#aaa;
+    font-size: 0.8em;
 }
 
-.price s{
-    color: #aaa;
-    font-size: .8em;
-}
-
-footer{
+footer {
     margin-top: 3em;
     padding-top: 1em;
     border-top: 1px solid #ccc;
@@ -41,19 +37,16 @@ footer{
 }
 
 h2 {
-    font-size: 1.5rem;
-    font-weight: 300;
+    font-size: 1rem;    
+    font-weight: 150;
 }
 
 /* Course info */
 .course-info {
     margin-bottom: 2em;
 }
-
-
-
 .course-info aside {
-    background-color: #dbdbdb;
+    background-color: #f5f5f5;
     padding: 1em;
     height: 100%;
 }
@@ -76,4 +69,17 @@ h2 {
 .course-lessons .course-duration {
     font-weight: bold;
 
+}
+section+section {
+    margin-top: 2em;
+}
+.jumbotron {
+    
+    background-image: url('/images/hero.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.jumbotron h1 {
+    font-size: 3.5rem;
 }

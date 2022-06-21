@@ -6,6 +6,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MyCourse.Models.Options;
+using MyCourse.Models.ValueTypes;
 
 namespace MyCourse.Models.Services.Infrastructure
 {
@@ -23,11 +24,19 @@ namespace MyCourse.Models.Services.Infrastructure
         /***************************************************************************************/
         public async Task<DataSet> QueryAsync(FormattableString formattableQuery)
         {   
+            
+
             //Creiamo dei SqliteParameter a partire dalla FormattableString
             var queryArguments = formattableQuery.GetArguments();
             var sqliteParameters = new List<SqliteParameter>();
             for (var i = 0; i < queryArguments.Length; i++)
             {
+                //Se l'argomento è di tipo Sql....
+                if(queryArguments[i] is Sql)
+                {
+                    continue;
+                }
+                //....non andare a creare il SqliteParameter
                 var parameter = new SqliteParameter(i.ToString(), queryArguments[i]);
                 sqliteParameters.Add(parameter);
                 queryArguments[i] = "@" + i;

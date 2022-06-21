@@ -35,6 +35,13 @@ namespace MyCourse
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddResponseCaching();
+            services
+            .AddControllersWithViews() //Oppure AddRazorPages o AddMvc
+            #if DEBUG
+            .AddRazorRuntimeCompilation();
+            #endif
+  
+
             services.AddMvc( options => {
                 var homeProfile = new CacheProfile();
 
@@ -49,8 +56,8 @@ namespace MyCourse
             services.AddMvc(options => options.EnableEndpointRouting = false);
             
             //Il codice sotto riportato serve per far funzionare il costruttore presente nella classe CoursesController presente nella dir Controllers
-            //services.AddTransient<ICourseService, AdoNetCourseService>();
-            services.AddTransient<ICourseService, EfCoreCourseService>();
+            services.AddTransient<ICourseService, AdoNetCourseService>();
+            //services.AddTransient<ICourseService, EfCoreCourseService>();
             services.AddTransient<IDatabaseAccessor, SqliteDatabaseAccessor>();
             services.AddTransient<ICachedCourseService, MemoryCacheCourseService>();
 
