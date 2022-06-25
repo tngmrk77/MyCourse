@@ -2,14 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using MyCourse.Models.Entities;
 using MyCourse.Models.Enums;
 using MyCourse.Models.ValueTypes;
 
 namespace MyCourse.Models.ViewModels
 {
     public class CourseDetailViewModel : CourseViewModel
-    {       
-         public string Description { get; set; }
+    {
+        public CourseDetailViewModel()
+        {
+            Lessons = new List<LessonViewModel>();
+        }
+        public string Description { get; set; }
         public List<LessonViewModel> Lessons { get; set; }
 
         public TimeSpan TotalCourseDuration
@@ -17,7 +22,6 @@ namespace MyCourse.Models.ViewModels
             get => TimeSpan.FromSeconds(Lessons?.Sum(l => l.Duration.TotalSeconds) ?? 0);
         }
 
-        //Logica del Mapping
         public static new CourseDetailViewModel FromDataRow(DataRow courseRow)
         {
             var courseDetailViewModel = new CourseDetailViewModel
@@ -37,10 +41,25 @@ namespace MyCourse.Models.ViewModels
                 ),
                 Id = Convert.ToInt32(courseRow["Id"]),
                 Lessons = new List<LessonViewModel>()
-
             };
             return courseDetailViewModel;
-            
+        }
+
+        public static new CourseDetailViewModel FromEntity(Course course)
+        {
+            return new CourseDetailViewModel {
+                Id = course.Id,
+                Title = course.Title,
+                Description = course.Description,
+                Author = course.Author,
+                ImagePath = course.ImagePath,
+                Rating = course.Rating,
+                CurrentPrice = course.CurrentPrice,
+                FullPrice = course.FullPrice,
+                Lessons = course.Lessons
+                                    .Select(lesson => LessonViewModel.FromEntity(lesson))
+                                    .ToList()
+            };
         }
     }
 }
